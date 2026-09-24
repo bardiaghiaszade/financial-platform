@@ -1,6 +1,6 @@
 🏦 Bank Transaction Platform
 
-A simple web-based banking platform built with Python. The application provides basic account management and banking functionality through a clean and simple web interface.
+A simple web-based banking platform built with Python and Flask. The project provides basic user authentication, account management, and banking functionality through a web interface.
 
 ✨ Features
 
@@ -8,17 +8,17 @@ A simple web-based banking platform built with Python. The application provides 
 
 💰 Account balance management
 
-💸 Bank transaction handling
+💸 Bank transaction functionality
 
-📊 User dashboard
+📊 Personal dashboard
 
 🔑 Password recovery
 
-🗄️ SQLite database integration
+🗄️ SQLite database
 
-🎨 Simple responsive web interface
+🎨 Simple web interface
 
-🛠️ Tech Stack
+🛠️ Technologies
 
 Python 3
 
@@ -30,10 +30,10 @@ HTML5
 
 CSS3
 
+```text
 📁 Project Structure
-Bank-Transaction-Platform/
-│
-├── app.py                 # Main application
+.
+├── app.py                 # Main Flask application
 ├── run.py                 # Application entry point
 ├── requirements.txt       # Python dependencies
 ├── platform.db            # SQLite database
@@ -43,12 +43,13 @@ Bank-Transaction-Platform/
 │
 ├── templates/
 │   ├── dashboard.html     # User dashboard
-│   ├── forgotPass.html    # Password recovery
+│   ├── forgotPass.html    # Password recovery page
 │   ├── login.html         # Login page
 │   └── signup.html        # Registration page
 │
-└── README.md
+└── README.md              # Project documentation
 
+```
 🚀 Getting Started
 1. Clone the repository
 git clone <your-repository-url>
@@ -58,7 +59,7 @@ cd <project-folder>
 python -m venv venv
 
 
-Activate it:
+Activate the virtual environment:
 
 Windows
 
@@ -76,35 +77,39 @@ pip install -r requirements.txt
 python run.py
 
 
-Then open the local URL shown in your terminal.
+Then open the local address provided by Flask in your browser.
 
 🗄️ Database
 
-The application uses SQLite for storing application data. The database file is:
+The application uses SQLite for data storage.
+
+The database file is:
 
 platform.db
 
 
-For development, the database is stored locally within the project.
+The database is intended for local development and testing.
 
 ⚠️ Disclaimer
 
-This project was created for educational and development purposes. It is not intended to process real financial transactions or store real banking credentials or sensitive financial information.
+This project was created for educational and development purposes only.
 
-📌 Future Improvements
+It is not intended to process real financial transactions or store real banking credentials or sensitive financial information.
 
-Add transaction history
+🔮 Future Improvements
 
-Improve authentication and security
+Add detailed transaction history
 
 Add account-to-account transfers
 
+Improve authentication and security
+
 Add transaction notifications
 
-Improve UI/UX
+Improve the user interface
 
 Add automated tests
 
 📄 License
 
-This project is for educational and personal use.
+This project is intended for educational and personal use.
