@@ -1,73 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank - Log In</title>
-    
-    <link rel="stylesheet" href="../static/style.css">
-</head>
-<body>
-    <header class="site-header">
-        <a href="login.html" class="brand-link">
-            <div class="brand-logo">B</div>
-            <span class="brand-name">Transaction Bank</span>
-        </a>
-    </header>
-
-    <main class="card">
-        <header>
-            <h1>Log In</h1>
-            <p class="subtitle">Welcome back! Please enter your details.</p>
-        </header>
-        
-        <!-- Form that user can login into an account -->
-        <form action="#" method="POST">
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    placeholder="name@example.com" 
-                    required 
-                    autocomplete="email"
-                >
-            </div>
-
-            <div class="form-group">
-                <div class="form-header">
-                    <label for="password">Password</label>
-                    <a href="forgotPass.html" class="forgot-link">Forgot password?</a>
-                </div>
-                <input 
-                    type="password" 
-                    id="password" 
-                    name="password" 
-                    placeholder="••••••••" 
-                    required 
-                    autocomplete="current-password"
-                >
-            </div>
-
-            <button type="submit" class="btn">Log In</button>
-        </form>
-
-        <p class="footer-text">
-            Don't have an account? 
-            <a href="signup.html">Sign up</a>
-        </p>
-    </main>
-
-    <!-- Footer part -->
-    <footer class="site-footer">
-        <p>&copy; 2026 Transaction Bank. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Support</a>
-        </div>
-    </footer>
-
-</body>
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Bank - Log In</title> 
+     
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+</head> 
+<body> 
+    <header class="site-header"> 
+        <a href="login.html" class="brand-link"> 
+            <div class="brand-logo">B</div> 
+            <span class="brand-name">Transaction Bank</span> 
+        </a> 
+    </header> 
+ 
+    <main class="card"> 
+        <header> 
+            <h1>Log In</h1> 
+            <p class="subtitle">Welcome back! Please enter your details.</p> 
+        </header> 
+         
+        <!-- Form that user can login into an account --> 
+        <form action="#" method="POST"> 
+            <div class="form-group"> 
+                <label for="email">Email Address</label> 
+                <input  
+                    type="email"  
+                    id="email"  
+                    name="email"  
+                    placeholder="name@example.com"  
+                    required  
+                    autocomplete="email" 
+                > 
+            </div> 
+ 
+            <div class="form-group"> 
+                <div class="form-header"> 
+                    <label for="password">Password</label> 
+                    <a href="{{ url_for('forgot_password') }}" class="forgot-link">Forgot password?</a> 
+                </div> 
+                <input  
+                    type="password"  
+                    id="password"  
+                    name="password"  
+                    placeholder="••••••••"  
+                    required  
+                    autocomplete="current-password" 
+                > 
+            </div> 
+ 
+            <button type="submit" class="btn">Log In</button> 
+        </form> 
+ 
+        <p class="footer-text"> 
+            Don't have an account?  
+            <a href="{{ url_for('signup') }}">Sign Up</a> 
+        </p> 
+    </main> 
+ 
+    <!-- Footer part --> 
+    <footer class="site-footer"> 
+        <p>&copy; 2026 Transaction Bank. All rights reserved.</p> 
+        <div class="footer-links"> 
+            <a href="#">Privacy Policy</a> 
+            <a href="#">Terms of Service</a> 
+            <a href="#">Support</a> 
+        </div> 
+    </footer> 
+ 
+</body> 
 </html>
