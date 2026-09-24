@@ -1,5 +1,10 @@
 🏦 Bank Transaction Platform
 
+
+<img width="2527" height="1181" alt="Screenshot 2026-09-24 at 12 07 15" src="https://github.com/user-attachments/assets/9c048611-c456-4ed0-940a-9e819ec91c12" />
+
+
+
 A simple web-based banking platform built with Python and Flask. The project provides basic user authentication, account management, and banking functionality through a web interface.
 
 ✨ Features
