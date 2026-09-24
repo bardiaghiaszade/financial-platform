@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank - Dashboard</title>
+    <!-- Relative path to CSS -->
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body class="dashboard-body">
+    <header class="site-header">
+        <!-- Left: Brand Logo & Name -->
+        <a href="dashboard.html" class="brand-link">
+            <div class="brand-logo">B</div>
+            <span class="brand-name">Transaction Bank</span>
+        </a>
+    
+        <!-- Right: User Info & Logout Button -->
+        <div class="nav-user">
+            <span class="user-name">John Doe</span>
+            <a href="login.html" class="btn-logout">Log Out</a>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+     <main>
+    <div class="dashboard-container">
+        
+        <!-- Summary Cards Grid -->
+        <section class="metrics-grid">
+            <div class="stat-card primary">
+                <div class="stat-title">Total Balance</div>
+                <div class="stat-value">$12,450.80</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Income (This Month)</div>
+                <div class="stat-value">$4,200.00</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Expenses (This Month)</div>
+                <div class="stat-value">$1,850.25</div>
+            </div>
+        </section>
+
+        <!-- Recent Transactions Table -->
+        <section class="table-card">
+            <div class="table-header">
+                <h2>Recent Transactions</h2>
+            </div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Salary Deposit</td>
+                            <td>Sep 22, 2026</td>
+                            <td><span class="badge badge-success">Completed</span></td>
+                            <td class="amount-positive">+$3,500.00</td>
+                        </tr>
+                        <tr>
+                            <td>Grocery Store</td>
+                            <td>Sep 20, 2026</td>
+                            <td><span class="badge badge-success">Completed</span></td>
+                            <td class="amount-negative">-$124.50</td>
+                        </tr>
+                        <tr>
+                            <td>Online Transfer</td>
+                            <td>Sep 18, 2026</td>
+                            <td><span class="badge badge-pending">Pending</span></td>
+                            <td class="amount-negative">-$250.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+</main>
+    <footer class="site-footer">
+        <p>&copy; 2026 Transaction Bank. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Support</a>
+        </div>
+    </footer>
+
+</body>
+</html>
