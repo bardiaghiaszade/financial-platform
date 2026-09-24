@@ -1,7 +1,7 @@
 from database import get_connection
 
 
-def create_user(name, email, password):
+def create_user(first_name, last_name, phone_number, email, user_name, password):
 
     connection = get_connection()
 
@@ -9,10 +9,10 @@ def create_user(name, email, password):
 
     cursor.execute(
         """
-        INSERT INTO users (name, email, password)
-        VALUES (?, ?, ?)
+        INSERT INTO users create_user(first_name, last_name, phone_number, email, user_name, password)
+        VALUES (?, ?, ?, ?, ?, ?)
         """,
-        (name, email, password)
+        create_user(first_name, last_name, phone_number, email, user_name, password)
     )
 
     connection.commit()

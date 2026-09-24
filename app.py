@@ -16,11 +16,14 @@ def signup():
 
     if request.method == "POST":
 
-        name = request.form["name"]
-        email = request.form["email"]
+        first_name = request.form["first_name"]
+        last_name = request.form["last_name"]
+        phone_number = request.form["phone_number"]
+        email= request.form["email"]
+        user_name = request.form["user_name"]
         password = request.form["password"]
 
-        create_user(name, email, password)
+        create_user(first_name, last_name, phone_number, email, user_name, password)
 
         return redirect("/login")
 
