@@ -148,6 +148,34 @@
      justify-content: space-between;
      align-items: center;
    }
+
+   .form-error {
+    color: #dc2626;
+    font-size: 0.9rem;
+    margin-top: 6px;
+}
+
+.password-strength {
+  margin-top: 0.5px;
+  min-height: 0.5px;
+  font-size: 0.80rem;
+  font-weight: 800;
+  transition: color 0.2s ease;
+}
+
+.password-strength.weak {
+  color: #dc2626;
+}
+
+.password-strength.medium {
+  color: #d97706;
+}
+
+.password-strength.strong {
+  color: #16a34a;
+}
+
+
    
    label {
      font-size: 14px;
