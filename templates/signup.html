@@ -25,14 +25,36 @@
         <!-- Full Name part --> 
          <form action="{{ url_for('signup') }}" method="POST"> 
             <div class="form-group"> 
-                <label for="name">Full Name</label> 
+                <label for="name">First Name</label> 
                 <input  
                     type="text"  
-                    id="name"  
-                    name="name"  
-                    placeholder="John Doe"  
+                    id="firstName"  
+                    name="firstName"  
+                    placeholder="John"  
                     required  
                     autocomplete="name" 
+                > 
+            </div> 
+            <div class="form-group"> 
+                <label for="name">Last Name</label> 
+                <input  
+                    type="text"  
+                    id="lastName"  
+                    name="lastName"  
+                    placeholder="Doe"  
+                    required  
+                    autocomplete="name" 
+                > 
+            </div> 
+            <div class="form-group"> 
+                <label for="phone">Phone Number</label> 
+                <input  
+                    type="tel"  
+                    id="phone"  
+                    name="phone"  
+                    placeholder="+49 123 45678910"  
+                    required  
+                    autocomplete="tel" 
                 > 
             </div> 
  
@@ -48,6 +70,19 @@
                     autocomplete="email" 
                 > 
             </div> 
+
+            <div class="form-group"> 
+                <label for="username">Username</label> 
+                <input  
+                    type="username"  
+                    id="username"  
+                    name="username"  
+                    placeholder="JohnDoe"  
+                    required  
+                    autocomplete="username" 
+                > 
+            </div> 
+            
  
             <!-- Password part --> 
             <div class="form-group"> 
@@ -61,7 +96,20 @@
                     autocomplete="new-password" 
                 > 
             </div> 
- 
+
+            
+            <div class="form-group"> 
+                <label for="password">Reenter Password</label> 
+                <input  
+                    type="password"  
+                    id="passwordR"  
+                    name="passwordR"  
+                    placeholder="••••••••"  
+                    required  
+                    autocomplete="new-password" 
+                > 
+            </div> 
+
             <!-- Button tu submit --> 
             <button type="submit" class="btn">Sign Up</button> 
         </form> 
