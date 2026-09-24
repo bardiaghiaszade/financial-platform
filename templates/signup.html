@@ -23,9 +23,13 @@
          <!-- Form that user can create account --> 
          
         <!-- Full Name part --> 
-         <form action="{{ url_for('signup') }}" method="POST"> 
+         <form
+         id="signupForm" 
+         action="{{ url_for('signup') }}" 
+         method="POST"> 
+
             <div class="form-group"> 
-                <label for="name">First Name</label> 
+                <label for="firstName">First Name</label> 
                 <input  
                     type="text"  
                     id="firstName"  
@@ -36,7 +40,7 @@
                 > 
             </div> 
             <div class="form-group"> 
-                <label for="name">Last Name</label> 
+                <label for="lastName">Last Name</label> 
                 <input  
                     type="text"  
                     id="lastName"  
@@ -74,7 +78,7 @@
             <div class="form-group"> 
                 <label for="username">Username</label> 
                 <input  
-                    type="username"  
+                    type="text"  
                     id="username"  
                     name="username"  
                     placeholder="JohnDoe"  
@@ -95,6 +99,7 @@
                     required  
                     autocomplete="new-password" 
                 > 
+                <div id="passwordStrength" class="password-strength"></div>
             </div> 
 
             
@@ -109,6 +114,9 @@
                     autocomplete="new-password" 
                 > 
             </div> 
+
+            <p id="passwordError" class="form-error"></p>
+
 
             <!-- Button tu submit --> 
             <button type="submit" class="btn">Sign Up</button> 
@@ -132,5 +140,7 @@
      
     </footer> 
  
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
 </body> 
 </html>
