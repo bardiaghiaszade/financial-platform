@@ -9,10 +9,10 @@ def create_user(first_name, last_name, phone_number, email, user_name, password)
 
     cursor.execute(
         """
-        INSERT INTO users create_user(first_name, last_name, phone_number, email, user_name, password)
+        INSERT INTO users (first_name, last_name, phone_number, email, user_name, password)
         VALUES (?, ?, ?, ?, ?, ?)
         """,
-        create_user(first_name, last_name, phone_number, email, user_name, password)
+        (first_name, last_name, phone_number, email, user_name, password)
     )
 
     connection.commit()

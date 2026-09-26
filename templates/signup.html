@@ -33,7 +33,7 @@
                 <input  
                     type="text"  
                     id="firstName"  
-                    name="firstName"  
+                    name="first_name"  
                     placeholder="John"  
                     required  
                     autocomplete="name" 
@@ -44,7 +44,7 @@
                 <input  
                     type="text"  
                     id="lastName"  
-                    name="lastName"  
+                    name="last_name"  
                     placeholder="Doe"  
                     required  
                     autocomplete="name" 
@@ -55,7 +55,7 @@
                 <input  
                     type="tel"  
                     id="phone"  
-                    name="phone"  
+                    name="phone_number"  
                     placeholder="+49 123 45678910"  
                     required  
                     autocomplete="tel" 
@@ -80,7 +80,7 @@
                 <input  
                     type="text"  
                     id="username"  
-                    name="username"  
+                    name="user_name"  
                     placeholder="JohnDoe"  
                     required  
                     autocomplete="username" 
@@ -133,9 +133,7 @@
  
         <p>&copy; 2026 Transaction Bank. All rights reserved.</p> 
         <div class="footer-links"> 
-            <a href="#">Privacy Policy</a> 
-            <a href="#">Terms of Service</a> 
-            <a href="#">Support</a> 
+            <a href="{{ url_for('login') }}">Support</a> 
         </div> 
      
     </footer> 
