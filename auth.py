@@ -1,7 +1,10 @@
 from database import get_connection
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 def create_user(first_name, last_name, phone_number, email, user_name, password):
+
+    hashed_password = generate_password_hash(password)
 
     connection = get_connection()
 
@@ -12,7 +15,7 @@ def create_user(first_name, last_name, phone_number, email, user_name, password)
         INSERT INTO users (first_name, last_name, phone_number, email, user_name, password)
         VALUES (?, ?, ?, ?, ?, ?)
         """,
-        (first_name, last_name, phone_number, email, user_name, password)
+        (first_name, last_name, phone_number, email, user_name, hashed_password)
     )
 
     connection.commit()
@@ -29,13 +32,16 @@ def check_login(email, password):
         """
         SELECT *
         FROM users
-        WHERE email = ? AND password = ?
+        WHERE email = ?
         """,
-        (email, password)
+        (email,)
     )
 
     user = cursor.fetchone()
 
     connection.close()
 
-    return user
+    if user and check_password_hash(user[6], password):
+        return user
+
+    return None
