@@ -32,10 +32,13 @@ def signup():
             password
         )
 
-        send_email(
-            email,
-            first_name
-        )
+        try:
+            send_email(
+                email,
+                first_name
+            )
+        except Exception as e:
+            print("Welcome email could not be sent because .env was not created (you are dumb!):", e)
 
         return redirect("/dashboard")
 
