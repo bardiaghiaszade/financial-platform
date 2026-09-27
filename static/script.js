@@ -1,7 +1,7 @@
 const signupForm = document.getElementById("signupForm");
 
 if (signupForm) {
-    signupForm.addEventListener("submit", function (event) {
+    signupForm.addEventListener("input", function (event) {
 
         const password = document.getElementById("password").value;
         const passwordR = document.getElementById("passwordR").value;
