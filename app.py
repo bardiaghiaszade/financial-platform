@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-
+from email_service import send_email
 from auth import create_user, check_login
 
 
@@ -19,11 +19,23 @@ def signup():
         first_name = request.form["first_name"]
         last_name = request.form["last_name"]
         phone_number = request.form["phone_number"]
-        email= request.form["email"]
+        email = request.form["email"]
         user_name = request.form["user_name"]
         password = request.form["password"]
 
-        create_user(first_name, last_name, phone_number, email, user_name, password)
+        create_user(
+            first_name,
+            last_name,
+            phone_number,
+            email,
+            user_name,
+            password
+        )
+
+        send_email(
+            email,
+            first_name
+        )
 
         return redirect("/dashboard")
 
