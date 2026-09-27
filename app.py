@@ -25,7 +25,7 @@ def signup():
 
         create_user(first_name, last_name, phone_number, email, user_name, password)
 
-        return redirect("/login")
+        return redirect("/dashboard")
 
     return render_template("signup.html")
 
