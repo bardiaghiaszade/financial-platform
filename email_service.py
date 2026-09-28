@@ -2,6 +2,7 @@ import os
 import smtplib
 from email.message import EmailMessage
 from dotenv import load_dotenv
+from random import randint
 
 load_dotenv()
 
@@ -35,3 +36,29 @@ def send_welcome_email(receiver, first_name):
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
         server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
         server.send_message(message)
+
+def send_verification_email(receiver):
+    verification_code = randint(100000, 1000000)
+    message = EmailMessage()
+    
+    message["Subject"] = "your verification code"
+    message["From"] = EMAIL_ADDRESS
+    message["To"] = receiver
+
+    html = f"""
+    <html>
+        <body>
+            <p>Your verification code is:</p>
+            <h2>{verification_code}</h2>
+        </body>
+    </html>
+    """
+
+    message.add_alternative(html, subtype="html")
+
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+        server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+        server.send_message(message)
+
+    return verification_code
+    
