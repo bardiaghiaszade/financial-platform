@@ -9,7 +9,7 @@ EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 
 
-def send_email(receiver, first_name):
+def send_welcome_email(receiver, first_name):
     message = EmailMessage()
 
     message["Subject"] = "Welcome to Financial Platform!"

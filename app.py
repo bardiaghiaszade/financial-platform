@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-from email_service import send_email
+from email_service import send_welcome_email
 from auth import create_user, check_login
 
 
@@ -33,7 +33,7 @@ def signup():
         )
 
         try:
-            send_email(
+            send_welcome_email(
                 email,
                 first_name
             )
