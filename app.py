@@ -1,11 +1,16 @@
 from flask import Flask, render_template, request, redirect
 from email_service import send_welcome_email
 from auth import create_user, check_login
+from log import setup_logging
 
-
+# Creating the Object
 app = Flask(__name__)
 
+# Creating a logger
+setup_logging(app=app)
 
+
+# ----------------------------------------Routes----------------------------------------
 @app.route("/")
 def home():
     return render_template("login.html")
@@ -39,6 +44,9 @@ def signup():
             )
         except Exception as e:
             print("Welcome email could not be sent because .env was not created (you are dumb!):", e)
+        
+        # Logger // it should not be username there due to security issue
+        app.logger.info(f"New User:{user_name}")
 
         return redirect("/dashboard")
 
@@ -56,8 +64,10 @@ def login():
         user = check_login(email, password)
 
         if user:
+            app.logger.info("User logged in")
             return redirect("/dashboard")
 
+        app.logger.warning("Attempt to login unseccesful")
         return "Wrong email or password"
 
     return render_template("login.html")
