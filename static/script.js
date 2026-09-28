@@ -1,44 +1,264 @@
-const signupForm = document.getElementById("signupForm");
+document.addEventListener("DOMContentLoaded", function () {
 
-if (signupForm) {
-    signupForm.addEventListener("input", function (event) {
+    // ============================================================
+    // Password elements
+    // ============================================================
 
-        const password = document.getElementById("password").value;
-        const passwordR = document.getElementById("passwordR").value;
-        const passwordError = document.getElementById("passwordError");
+    const passwordInput = document.getElementById("password");
+    const confirmPasswordInput = document.getElementById("passwordR");
 
-        if (password !== passwordR) {
-            event.preventDefault();
+    const passwordStrength =
+        document.getElementById("passwordStrength");
 
-            passwordError.textContent = "Passwords do not match";
-        } else {
-            passwordError.textContent = "";
+    const passwordError =
+        document.getElementById("passwordError");
+
+
+    // ============================================================
+    // Calculate password strength
+    // ============================================================
+
+    function passScore(password) {
+
+        let score = 0;
+
+        // Length
+        if (password.length >= 8) {
+            score++;
         }
-    });
-}
+
+        if (password.length >= 12) {
+            score++;
+        }
+
+        // Lowercase
+        if (/[a-z]/.test(password)) {
+            score++;
+        }
+
+        // Uppercase
+        if (/[A-Z]/.test(password)) {
+            score++;
+        }
+
+        // Number
+        if (/[0-9]/.test(password)) {
+            score++;
+        }
+
+        // Special character
+        if (/[^A-Za-z0-9]/.test(password)) {
+            score++;
+        }
+
+        return score;
+    }
 
 
-const passwordInput = document.getElementById("password");
-const passwordStrength = document.getElementById("passwordStrength");
+    // ============================================================
+    // Update password strength
+    // ============================================================
 
-if(passwordInput && passwordStrength){
-    passwordInput.addEventListener("input", function(){
+    function updatePasswordStrength() {
 
-        const passcode = passwordInput.value;
+        if (!passwordInput || !passwordStrength) {
+            return;
+        }
 
-        if(passcode.length === 0){
+        const password = passwordInput.value;
+
+        // Remove previous strength class
+        passwordStrength.classList.remove(
+            "weak",
+            "medium",
+            "strong"
+        );
+
+        // Nothing entered
+        if (password.length === 0) {
             passwordStrength.textContent = "";
-        }else if(passcode.length < 6){
+            return;
+        }
+
+        const score = passScore(password);
+
+
+        // Weak
+        if (score <= 2) {
+
             passwordStrength.textContent = "Weak";
             passwordStrength.classList.add("weak");
 
-        }else if(passcode.length < 10){
-            passwordStrength.textContent = "Medium"
+        }
+
+        // Medium
+        else if (score <= 4) {
+
+            passwordStrength.textContent = "Medium";
             passwordStrength.classList.add("medium");
 
-        }else{
+        }
+
+        // Strong
+        else {
+
             passwordStrength.textContent = "Strong";
             passwordStrength.classList.add("strong");
         }
-    })
-}
+    }
+
+
+    // ============================================================
+    // Check whether passwords match
+    // ============================================================
+
+    function checkPasswords() {
+
+        if (
+            !passwordInput ||
+            !confirmPasswordInput ||
+            !passwordError
+        ) {
+            return true;
+        }
+
+
+        // Don't show an error if confirmation is empty
+        if (confirmPasswordInput.value === "") {
+
+            passwordError.textContent = "";
+
+            return true;
+        }
+
+
+        // Passwords match
+        if (
+            passwordInput.value ===
+            confirmPasswordInput.value
+        ) {
+
+            passwordError.textContent = "";
+
+            return true;
+        }
+
+
+        // Passwords don't match
+        passwordError.textContent =
+            "Passwords do not match.";
+
+        return false;
+    }
+
+
+    // ============================================================
+    // Show / Hide password
+    // ============================================================
+
+    function setupPasswordToggles() {
+
+        const passwordContainers =
+            document.querySelectorAll(".password-container");
+
+
+        passwordContainers.forEach(function (container) {
+
+            const input =
+                container.querySelector("input");
+
+            const button =
+                container.querySelector(".password-toggle");
+
+
+            // Make sure both elements exist
+            if (!input || !button) {
+                return;
+            }
+
+
+            button.addEventListener("click", function () {
+
+                if (input.type === "password") {
+
+                    input.type = "text";
+
+                    button.textContent = "Hide";
+
+                }
+
+                else {
+
+                    input.type = "password";
+
+                    button.textContent = "Show";
+                }
+
+            });
+
+        });
+    }
+
+
+    // ============================================================
+    // Event listeners
+    // ============================================================
+
+    if (passwordInput) {
+
+        passwordInput.addEventListener(
+            "input",
+            updatePasswordStrength
+        );
+
+        passwordInput.addEventListener(
+            "input",
+            checkPasswords
+        );
+    }
+
+
+    if (confirmPasswordInput) {
+
+        confirmPasswordInput.addEventListener(
+            "input",
+            checkPasswords
+        );
+    }
+
+
+    // ============================================================
+    // Prevent form submission if passwords don't match
+    // ============================================================
+
+    const signupForm =
+        document.getElementById("signupForm");
+
+
+    if (signupForm) {
+
+        signupForm.addEventListener(
+            "submit",
+            function (event) {
+
+                if (!checkPasswords()) {
+
+                    event.preventDefault();
+
+                    if (confirmPasswordInput) {
+                        confirmPasswordInput.focus();
+                    }
+                }
+
+            }
+        );
+    }
+
+
+    // ============================================================
+    // Start password toggles
+    // ============================================================
+
+    setupPasswordToggles();
+
+});
