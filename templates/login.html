@@ -39,16 +39,21 @@
                 <div class="form-header"> 
                     <label for="password">Password</label> 
                     <a href="{{ url_for('forgot_password') }}" class="forgot-link">Forgot password?</a> 
+                
+                </div>
+                <div class="password-container"> 
+                    <input  
+                        type="password"  
+                        id="password"  
+                        name="password"  
+                        placeholder="••••••••"  
+                        required  
+                        autocomplete="current-password" 
+                    > 
+                    <button type="button" class="password-toggle">
+                        Show
+                    </button>
                 </div> 
-                <input  
-                    type="password"  
-                    id="password"  
-                    name="password"  
-                    placeholder="••••••••"  
-                    required  
-                    autocomplete="current-password" 
-                > 
-            </div> 
  
             <button type="submit" class="btn">Log In</button> 
         </form> 

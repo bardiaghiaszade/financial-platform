@@ -175,7 +175,35 @@
   color: #16a34a;
 }
 
+.password-container {
+  position: relative;
+  width: 100%;
+}
 
+.password-container input {
+  padding-right: 60px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  border: none;
+  background: transparent;
+
+  color: #818cf8;
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+  padding: 4px;
+}
+
+.password-toggle:hover {
+  color: #a5b4fc;
+}
    
    label {
      font-size: 14px;

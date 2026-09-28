@@ -91,28 +91,38 @@
             <!-- Password part --> 
             <div class="form-group"> 
                 <label for="password">Password</label> 
-                <input  
-                    type="password"  
-                    id="password"  
-                    name="password"  
-                    placeholder="••••••••"  
-                    required  
-                    autocomplete="new-password" 
-                > 
+                <div class="password-container">
+                    <input  
+                        type="password"  
+                        id="password"  
+                        name="password"  
+                        placeholder="••••••••"  
+                        required  
+                        autocomplete="new-password" 
+                    > 
+                    <button type="button" class="password-toggle">
+                        Show
+                    </button>
+                </div>
                 <div id="passwordStrength" class="password-strength"></div>
             </div> 
 
             
             <div class="form-group"> 
                 <label for="password">Reenter Password</label> 
-                <input  
-                    type="password"  
-                    id="passwordR"  
-                    name="passwordR"  
-                    placeholder="••••••••"  
-                    required  
-                    autocomplete="new-password" 
-                > 
+                <div class="password-container">
+                    <input  
+                        type="password"  
+                        id="passwordR"  
+                        name="passwordR"  
+                        placeholder="••••••••"  
+                        required  
+                        autocomplete="new-password" 
+                    > 
+                    <button type="button" class="password-toggle">
+                        Show
+                    </button>
+                </div>
             </div> 
 
             <p id="passwordError" class="form-error"></p>
