@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Transaction Bank - Reset Password</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <a href="{{ url_for('login') }}" class="brand-link">
+            <div class="brand-logo">B</div>
+            <span class="brand-name">Transaction Bank</span>
+        </a>
+    </header>
+
+    <main class="card">
+
+        <header>
+            <h1>Reset your Password</h1>
+
+            <p class="subtitle">
+                Enter your new password below.
+            </p>
+        </header>
+
+        <form
+            id="resetPasswordForm"
+            action="{{ url_for('reset_password', token=token) }}"
+            method="POST"
+        >
+
+            <div class="form-group">
+                <label for="newPassword">New Password</label>
+
+                <input
+                    type="password"
+                    id="newPassword"
+                    name="newPassword"
+                    placeholder="••••••••"
+                    required
+                    autocomplete="new-password"
+                >
+
+                <div
+                    id="passwordStrength"
+                    class="password-strength"
+                ></div>
+            </div>
+
+            <div class="form-group">
+                <label for="newPasswordR">
+                    Confirm New Password
+                </label>
+
+                <input
+                    type="password"
+                    id="newPasswordR"
+                    name="newPasswordR"
+                    placeholder="••••••••"
+                    required
+                    autocomplete="new-password"
+                >
+            </div>
+
+            <p
+                id="passwordError"
+                class="form-error"
+                aria-live="polite"
+            ></p>
+
+            <button type="submit" class="btn">
+                Reset Password
+            </button>
+
+        </form>
+
+        <p class="footer-text">
+            Remember your password?
+            <a href="{{ url_for('login') }}">Log in</a>
+        </p>
+
+    </main>
+
+    <footer class="site-footer">
+
+        <p>&copy; 2026 Transaction Bank. All rights reserved.</p>
+
+        <div class="footer-links">
+            <a href="{{ url_for('login') }}">Support</a>
+        </div>
+
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
