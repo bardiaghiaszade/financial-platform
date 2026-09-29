@@ -20,6 +20,9 @@
      justify-content: center;
      padding: 88px 16px 74px;   /* Top (Header space), Horizontal, Bottom (Footer space) */
      -webkit-font-smoothing: antialiased;
+     transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
    }
    
    /* ==========================================================================
@@ -182,6 +185,16 @@
 
 .password-container input {
   padding-right: 60px;
+}
+
+.theme-toggle{
+  color: #818cf8;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease;
 }
 
 .password-toggle {
@@ -444,3 +457,40 @@
      color: #f87171;
      font-weight: 600;
    }
+
+   /* Light theme */
+body.light {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+body.light .site-header,
+body.light .site-footer,
+body.light .card,
+body.light .stat-card,
+body.light .table-card {
+  background-color: #ffffff;
+  border-color: #e2e8f0;
+}
+
+body.light .brand-name,
+body.light .card h1,
+body.light .table-header h2 {
+  color: #0f172a;
+}
+
+body.light label {
+  color: #334155;
+}
+
+body.light input {
+  background-color: #ffffff;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+body.light .subtitle,
+body.light .footer-text,
+body.light .site-footer {
+  color: #64748b;
+}

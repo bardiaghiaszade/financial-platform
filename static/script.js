@@ -199,10 +199,95 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // ============================================================
+    // Dark / Light Mode
+    // ============================================================
+
+    const themeToggle =
+        document.getElementById("themeToggle");
+
+
+    // ============================================================
+    // Update theme toggle
+    // ============================================================
+
+    function updateThemeButton() {
+
+        if (!themeToggle) {
+            return;
+        }
+
+        const isLight =
+            document.body.classList.contains("light");
+
+        themeToggle.textContent =
+            isLight ? "Dark Mode" : "Light Mode";
+    }
+
+
+    // ============================================================
+    // Load saved theme
+    // ============================================================
+
+    function loadTheme() {
+
+        const savedTheme =
+            localStorage.getItem("theme");
+
+        if (savedTheme === "light") {
+
+            document.body.classList.add("light");
+
+        }
+        else {
+
+            document.body.classList.remove("light");
+
+        }
+
+        updateThemeButton();
+    }
+
+
+    // ============================================================
+    // Toggle dark / light mode
+    // ============================================================
+
+    function toggleTheme() {
+
+        document.body.classList.toggle("light");
+
+        const isLight =
+            document.body.classList.contains("light");
+
+        localStorage.setItem(
+            "theme",
+            isLight ? "light" : "dark"
+        );
+
+        updateThemeButton();
+    }
+
 
     // ============================================================
     // Event listeners
     // ============================================================
+
+    if (themeToggle) {
+
+        themeToggle.addEventListener(
+            "click",
+            toggleTheme
+        );
+    
+    }
+    
+    
+    // ============================================================
+    // Start theme
+    // ============================================================
+    
+    loadTheme();
 
     if (passwordInput) {
 
