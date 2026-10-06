@@ -1,104 +1,424 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>Bank - Dashboard</title> 
-    <!-- Relative path to CSS --> 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
-</head> 
-<body class="dashboard-body"> 
-    <header class="site-header"> 
-        <!-- Left: Brand Logo & Name --> 
-        <a href="{{ url_for('dashboard') }}" class="brand-link"> 
-            <div class="brand-logo">B</div> 
-            <span class="brand-name">Transaction Bank</span> 
-        </a> 
-     
-        <!-- Right: User Info & Logout Button --> 
-        <div class="nav-user"> 
-            <span class="user-name">John Doe</span> 
-            <a href="{{ url_for('login') }}" class="btn-logout">Log Out</a> 
-        </div> 
-        <button type="button" id="themeToggle" class="theme-toggle">
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bank - Dashboard</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head> <body class="dashboard-body">
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
+<header class="site-header">
+
+    <a href="{{ url_for('dashboard') }}" class="brand-link">
+
+        <div class="brand-logo">B</div>
+
+        <span class="brand-name">
+            Transaction Bank
+        </span>
+
+    </a>
+
+
+    <div class="nav-user">
+
+        <span class="user-name">
+            Hi, John!
+        </span>
+
+        <a href="{{ url_for('login') }}" class="btn-logout">
+            Log Out
+        </a>
+
+        <button
+            type="button"
+            id="themeToggle"
+            class="theme-toggle">
             Light Mode
         </button>
-    </header> 
- 
-    <!-- Main Content Container --> 
-     <main> 
-    <div class="dashboard-container"> 
-         
-        <!-- Summary Cards Grid --> 
-        <section class="metrics-grid"> 
-            <div class="stat-card primary"> 
-                <div class="stat-title">Total Balance</div> 
-                <div class="stat-value">$12,450.80</div> 
-            </div> 
-            <div class="stat-card"> 
-                <div class="stat-title">Income (This Month)</div> 
-                <div class="stat-value">$4,200.00</div> 
-            </div> 
-            <div class="stat-card"> 
-                <div class="stat-title">Expenses (This Month)</div> 
-                <div class="stat-value">$1,850.25</div> 
-            </div> 
-        </section> 
- 
-        <!-- Recent Transactions Table --> 
-        <section class="table-card"> 
-            <div class="table-header"> 
-                <h2>Recent Transactions</h2> 
-            </div> 
-            <div class="table-wrapper"> 
-                <table class="data-table"> 
-                    <thead> 
-                        <tr> 
-                            <th>Description</th> 
-                            <th>Date</th> 
-                            <th>Status</th> 
-                            <th>Amount</th> 
-                        </tr> 
-                    </thead> 
-                    <tbody> 
-                        <tr> 
-                            <td>Salary Deposit</td> 
-                            <td>Sep 22, 2026</td> 
-                            <td><span class="badge badge-success">Completed</span></td> 
-                            <td class="amount-positive">+$3,500.00</td> 
-                        </tr> 
-                        <tr> 
-                            <td>Grocery Store</td> 
-                            <td>Sep 20, 2026</td> 
-                            <td><span class="badge badge-success">Completed</span></td> 
-                            <td class="amount-negative">-$124.50</td> 
-                        </tr> 
-                        <tr> 
-                            <td>Online Transfer</td> 
-                            <td>Sep 18, 2026</td> 
-                            <td><span class="badge badge-pending">Pending</span></td> 
-                            <td class="amount-negative">-$250.00</td> 
-                        </tr> 
-                    </tbody> 
-                </table> 
-            </div> 
-        </section> 
- 
-    </div> 
-</main> 
-    <footer class="site-footer"> 
-        <p>&copy; 2026 Transaction Bank. All rights reserved.</p> 
-        <div class="footer-links"> 
-            <a href="#">Privacy Policy</a> 
-            <a href="#">Terms of Service</a> 
-            <a href="#">Support</a> 
-        </div> 
-    </footer> 
- 
-    <script 
-        type="module"
-        src="{{ url_for('static', filename='js/script.js') }}">
-    </script>
 
-</body> 
-</html>
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     MAIN
+     ========================================================= -->
+
+<main>
+
+    <div class="dashboard-container">
+
+        <!-- =================================================
+             THREE COLUMN LAYOUT
+             LEFT = CHART
+             CENTER = EXISTING DASHBOARD
+             RIGHT = SEND MONEY
+             ================================================= -->
+
+        <div class="dashboard-layout">
+
+
+            <!-- =================================================
+                 LEFT SIDE - CHART
+                 ================================================= -->
+
+            <aside class="side-panel chart-panel">
+
+                <h2>Spending</h2>
+
+                <p>
+                    Monthly overview
+                </p>
+
+                <div class="chart-container">
+
+                    <canvas id="spendingChart"></canvas>
+
+                </div>
+
+            </aside>
+
+
+            <!-- =================================================
+                 CENTER - YOUR EXISTING CONTENT
+                 ================================================= -->
+
+            <div class="dashboard-center">
+
+
+                <!-- Summary Cards Grid -->
+
+                <section class="metrics-grid">
+
+                    <div class="stat-card primary">
+
+                        <div class="stat-title">
+                            Total Balance
+                        </div>
+
+                        <div class="stat-value">
+                            $12,450.80
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-title">
+                            Income (This Month)
+                        </div>
+
+                        <div class="stat-value">
+                            $4,200.00
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-title">
+                            Expenses (This Month)
+                        </div>
+
+                        <div class="stat-value">
+                            $1,850.25
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     RECENT TRANSACTIONS
+                     ================================================= -->
+
+                <section class="table-card">
+
+                    <div class="table-header">
+
+                        <h2>
+                            Recent Transactions
+                        </h2>
+
+                    </div>
+
+
+                    <div class="table-wrapper">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Description
+                                    </th>
+
+                                    <th>
+                                        Date
+                                    </th>
+
+                                    <th>
+                                        Status
+                                    </th>
+
+                                    <th>
+                                        Amount
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <tr>
+
+                                    <td>
+                                        Salary Deposit
+                                    </td>
+
+                                    <td>
+                                        Sep 22, 2026
+                                    </td>
+
+                                    <td>
+
+                                        <span class="badge badge-success">
+                                            Completed
+                                        </span>
+
+                                    </td>
+
+                                    <td class="amount-positive">
+                                        +$3,500.00
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        Grocery Store
+                                    </td>
+
+                                    <td>
+                                        Sep 20, 2026
+                                    </td>
+
+                                    <td>
+
+                                        <span class="badge badge-success">
+                                            Completed
+                                        </span>
+
+                                    </td>
+
+                                    <td class="amount-negative">
+                                        -$124.50
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        Online Transfer
+                                    </td>
+
+                                    <td>
+                                        Sep 18, 2026
+                                    </td>
+
+                                    <td>
+
+                                        <span class="badge badge-pending">
+                                            Pending
+                                        </span>
+
+                                    </td>
+
+                                    <td class="amount-negative">
+                                        -$250.00
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 RIGHT SIDE - SEND MONEY
+                 ================================================= -->
+
+            <aside class="side-panel send-money-panel">
+
+                <h2>
+                    Send Money
+                </h2>
+
+                <p>
+                    Transfer money
+                </p>
+
+
+                <form id="sendMoneyForm">
+
+
+                    <div class="form-group">
+
+                        <label for="recipient">
+                            Recipient
+                        </label>
+
+                        <input
+                            type="text"
+                            id="recipient"
+                            name="recipient"
+                            placeholder="Name or email"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="account">
+                            Account / IBAN
+                        </label>
+
+                        <input
+                            type="text"
+                            id="account"
+                            name="account"
+                            placeholder="Account number"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="sendAmount">
+                            Amount
+                        </label>
+
+                        <div class="amount-input">
+
+                            <span>$</span>
+
+                            <input
+                                type="number"
+                                id="sendAmount"
+                                name="amount"
+                                placeholder="0.00"
+                                min="0.01"
+                                step="0.01"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="message">
+                            Message
+                        </label>
+
+                        <input
+                            type="text"
+                            id="message"
+                            name="message"
+                            placeholder="Optional">
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="send-money-button">
+
+                        Send Money
+
+                    </button>
+
+
+                </form>
+
+            </aside>
+
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer class="site-footer">
+
+    <p>
+        &copy; 2026 Transaction Bank.
+        All rights reserved.
+    </p>
+
+
+    <div class="footer-links">
+
+        <a href="#">
+            Privacy Policy
+        </a>
+
+        <a href="#">
+            Terms of Service
+        </a>
+
+        <a href="#">
+            Support
+        </a>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     CHART.JS
+     ========================================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<!-- YOUR JAVASCRIPT -->
+
+<script
+    type="module"
+    src="{{ url_for('static', filename='js/script.js') }}">
+</script>
+
+</body> </html>
