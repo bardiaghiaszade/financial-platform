@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, jsonify
 from email_service import send_welcome_email
 from auth import create_user, check_login
 from log import setup_logging
@@ -11,73 +11,124 @@ setup_logging(app=app)
 
 
 # ----------------------------------------Routes----------------------------------------
+
 @app.route("/")
-def home():
+def home_page():
     return render_template("login.html")
 
+@app.route("/login")
+def login_page():
+    return render_template("login.html")
 
-@app.route("/signup", methods=["GET", "POST"])
-def signup():
+@app.route("/signup")
+def signup_page():
+    return render_template("signup.html")
 
-    if request.method == "POST":
+@app.route("/forgot-password")
+def forgot_password_page():
+    return render_template("forgotPass.html")
 
-        first_name = request.form["first_name"]
-        last_name = request.form["last_name"]
-        phone_number = request.form["phone_number"]
-        email = request.form["email"]
-        user_name = request.form["user_name"]
-        password = request.form["password"]
+@app.route("/dashboard")
+def dashboard_page():
+    return render_template("dashboard.html")
 
+@app.route("/recover-pass")
+def reset_password_page():
+    return render_template("recoverPass.html")
+
+# -------------------------------------------------------------------------------------
+
+@app.route("/api/signup", methods=["POST"])
+def signup_api():
+
+    data = request.get_json()
+
+    if not data:
+        return jsonify({
+            "success" : False,
+            "message" : "Credentials missing"
+        }), 400
+
+    firstName = data.get("firstName")
+    lastName = data.get("lastName")
+    phone = data.get("phone")
+    email = data.get("email")
+    username = data.get("username")
+    password = data.get("password")
+
+    if not all([firstName, 
+                lastName,
+                phone,
+                email,
+                username,
+                password]):
+        return jsonify({
+            "success" : False,
+            "message" : "credentials missing"
+        }), 400
+    try:
         create_user(
-            first_name,
-            last_name,
-            phone_number,
+            firstName,
+            lastName,
+            phone,
             email,
-            user_name,
+            username,
             password
         )
-
         try:
             send_welcome_email(
                 email,
-                first_name
-            )
+                firstName
+                )
+            app.logger.info(f"New User")
         except Exception as e:
-            print("Welcome email could not be sent because .env was not created (you are dumb!):", e)
+            app.logger.warning("Email connection failed")
         
-        # Logger // it should not be username there due to security issue
-        app.logger.info(f"New User:{user_name}")
+    except Exception as e:
+        app.logger.warning("Database failure")
+        return jsonify({
+            "success" : False,
+            "message" : "Internal Server Error"
+        }), 500
 
-        return redirect("/dashboard")
+    return jsonify({
+        "success" : True,
+        "message" : "Signup successful"
+    }), 201
 
-    return render_template("signup.html")
 
+@app.route("/api/login", methods=["POST"])
+def login_api():
 
-@app.route("/login", methods=["GET", "POST"])
-def login():
+    data = request.get_json()
 
-    if request.method == "POST":
+    if not data:
+        return jsonify({
+        "success": False,
+        "message": "No data received"
+    }), 400
 
-        email = request.form["email"]
-        password = request.form["password"]
+    email = data.get("email")
+    password = data.get("password")
 
-        user = check_login(email, password)
-
-        if user:
+    if not all([email, password]):
+        return jsonify({
+            "success" : False,
+            "message" : "Credentials missing"
+        }), 400
+    
+    user = check_login(email, password)
+    
+    if user:
             app.logger.info("User logged in")
-            return redirect("/dashboard")
-
-        app.logger.warning("Attempt to login unseccesful")
-        return "Wrong email or password"
-
-    return render_template("login.html")
-
-
-@app.route("/forgot-password")
-def forgot_password():
-    return render_template("forgotPass.html")
-
-
-@app.route("/dashboard")
-def dashboard():
-    return render_template("dashboard.html")
+            return jsonify({
+                "success" : True,
+                "message" : "Login successful"
+            }), 200
+    
+    app.logger.warning("Attempt to login unseccesful")
+    
+    return jsonify({
+        "success" : False,
+        "message" : "Wrong email or password"
+        }), 401
