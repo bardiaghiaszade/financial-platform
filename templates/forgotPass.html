@@ -23,7 +23,7 @@
             <p class="subtitle">Enter your Email to recover your Password</p> 
         </header> 
          
-        <form action="{{url_for('forgotPass')}}" method="POST"> 
+        <form action="{{url_for('forgot_password')}}" method="POST"> 
  
             <div class="form-group"> 
                 <label for="email">Email Address</label> 
@@ -57,7 +57,10 @@
         </div> 
     </footer> 
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script
+        type="module" 
+        src="{{ url_for('static', filename='js/script.js') }}">
+    </script>
 
 </body> 
 </html>
