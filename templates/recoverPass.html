@@ -12,7 +12,7 @@
 <body>
 
     <header class="site-header">
-        <a href="{{ url_for('login') }}" class="brand-link">
+        <a href="{{ url_for('login_page') }}" class="brand-link">
             <div class="brand-logo">B</div>
             <span class="brand-name">Transaction Bank</span>
         </a>
@@ -33,7 +33,7 @@
 
         <form
             id="resetPasswordForm"
-            action="{{ url_for('reset_password', token=token) }}"
+            action="{{ url_for('reset_password_page', token=token) }}"
             method="POST"
         >
 
@@ -84,7 +84,7 @@
 
         <p class="footer-text">
             Remember your password?
-            <a href="{{ url_for('login') }}">Log in</a>
+            <a href="{{ url_for('login_page') }}">Log in</a>
         </p>
 
     </main>
@@ -94,7 +94,7 @@
         <p>&copy; 2026 Transaction Bank. All rights reserved.</p>
 
         <div class="footer-links">
-            <a href="{{ url_for('login') }}">Support</a>
+            <a href="{{ url_for('login_page') }}">Support</a>
         </div>
 
     </footer>

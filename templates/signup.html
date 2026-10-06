@@ -8,7 +8,7 @@
 </head> 
 <body> 
     <header class="site-header"> 
-        <a href="{{ url_for('login') }}" class="brand-link"> 
+        <a href="{{ url_for('login_page') }}" class="brand-link"> 
             <div class="brand-logo">B</div> 
             <span class="brand-name">Transaction Bank</span> 
         </a> 
@@ -26,10 +26,7 @@
          <!-- Form that user can create account --> 
          
         <!-- Full Name part --> 
-         <form
-         id="signupForm" 
-         action="{{ url_for('signup') }}" 
-         method="POST"> 
+         <form id="signupForm"> 
 
             <div class="form-group"> 
                 <label for="firstName">First Name</label> 
@@ -137,7 +134,7 @@
  
         <p class="footer-text"> 
             Already have an account?  
-            <a href="{{ url_for('login') }}">Log in</a> 
+            <a href="{{ url_for('login_page') }}">Log in</a> 
         </p> 
     </main> 
  
@@ -146,7 +143,7 @@
  
         <p>&copy; 2026 Transaction Bank. All rights reserved.</p> 
         <div class="footer-links"> 
-            <a href="{{ url_for('login') }}">Support</a> 
+            <a href="{{ url_for('login_page') }}">Support</a> 
         </div> 
      
     </footer> 

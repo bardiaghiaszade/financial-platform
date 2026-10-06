@@ -8,7 +8,7 @@
 </head> 
 <body> 
     <header class="site-header"> 
-        <a href="{{ url_for('login') }}" class="brand-link"> 
+        <a href="{{ url_for('login_page') }}" class="brand-link"> 
             <div class="brand-logo">B</div> 
             <span class="brand-name">Transaction Bank</span> 
         </a> 
@@ -23,7 +23,7 @@
             <p class="subtitle">Enter your Email to recover your Password</p> 
         </header> 
          
-        <form action="{{url_for('forgot_password')}}" method="POST"> 
+        <form action="{{url_for('forgot_password_page')}}" method="POST"> 
  
             <div class="form-group"> 
                 <label for="email">Email Address</label> 
@@ -43,7 +43,7 @@
  
         <p class="footer-text"> 
             Back to  
-            <a href="{{ url_for('login') }}">Log in</a> 
+            <a href="{{ url_for('login_page') }}">Log in</a> 
         </p> 
     </main> 
  
