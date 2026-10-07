@@ -12,6 +12,11 @@ export function initLogin(){
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
 
+        const loginMessage = document.getElementById("loginMessage");
+
+        loginMessage.textContent = "";
+        loginMessage.classList.remove("show", "success");
+        
         try{
 
             const response = await fetch("/api/login", {
@@ -28,15 +33,16 @@ export function initLogin(){
             const data = await response.json();
 
             if(!response.ok){
-                throw new Error(data.message);
+                loginMessage.textContent = data.message;
+                loginMessage.classList.add("show");
+
+                return;
             }
 
             window.location.href = "/dashboard";
 
         }catch(error){
-            console.error(error);
-
-            alert(error.message);
+            loginMessage.textContent = error.message;
         }
     });
 }
