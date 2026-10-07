@@ -2,6 +2,10 @@ import { initPassword } from "./password.js";
 import { initTheme } from "./theme.js";
 import { initLogin } from "./login.js";
 import { initSignup } from "./signup.js";
+import { initForgotPass } from "./forgotPass.js";
+import { initSpendingChart } from "./chart.js"
+import { initDashbord } from "./dashbord.js";
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -10,5 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
     initTheme();
     initLogin();
     initSignup();
+    initForgotPass();
+    initSpendingChart();
+    initDashbord();
 
 });
