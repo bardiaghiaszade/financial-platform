@@ -16,6 +16,11 @@ export function initSignup(){
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
 
+        const signupMessage = document.getElementById("signupMessage");
+
+        signupMessage.textContent = "";
+        signupMessage.classList.remove("show", "success");
+
         try{
 
             const response = await fetch("/api/signup", {
@@ -36,15 +41,21 @@ export function initSignup(){
             const data = await response.json();
 
             if(!response.ok){
-                throw new Error(data.message);
+                signupMessage.textContent = data.message;
+                signupMessage.classList.add("show");
+
+                return
             }
 
-            window.location.href = "/login";
+            loginMessage.textContent = data.message;
+            loginMessage.classList.add("show", "success");
+
+            setTimeout(()=>{
+                window.location.href = "/login";
+            },1000);
 
         }catch(error){
-            console.error(error);
-
-            alert(error.message);
+            signupMessage.textContent = data.textContent;
         }
     });
 }
