@@ -37,6 +37,40 @@ def reset_password_page():
     return render_template("recoverPass.html")
 
 # -------------------------------------------------------------------------------------
+@app.route("/api/forgotPass", methods=["POST"])
+def forgotPass_api():
+    
+    data = request.get_json()
+
+    if not data:
+        return jsonify({
+            "success" : False,
+            "message" : "Credentials missing"
+        }), 400
+    
+    email = data.get("email")
+
+    if not email:
+        return jsonify({
+            "success" : False,
+            "message" : "Credentials missing"
+        }), 400
+    
+
+
+
+
+    ######
+    ###### search_user(email) if user exists send him the link via mail if not return that such user does not exist, for now i just return false
+    ######
+
+    return jsonify({
+        "success" : False,
+        "message" : "User does not exist"
+    }), 400
+
+
+
 
 @app.route("/api/signup", methods=["POST"])
 def signup_api():
