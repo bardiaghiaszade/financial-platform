@@ -3,13 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Reset Password</title>
+    <title>Verify Code</title>
 
     <link
         rel="stylesheet"
@@ -21,39 +20,32 @@
 
     <div class="container">
 
-        <h1>Reset Password</h1>
+        <h1>Verify Your Email</h1>
 
         <p>
-            Enter your new password.
+            We sent a 6-digit verification code
+            to your email address.
         </p>
 
-        <form id="resetPasswordForm">
+        <form id="verifyCodeForm">
 
             <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="New password"
+                type="text"
+                id="verificationCode"
+                name="verificationCode"
+                placeholder="6-digit code"
+                maxlength="6"
+                inputmode="numeric"
                 required
             >
-
-            <input
-                type="password"
-                id="newPasswordR"
-                name="newPasswordR"
-                placeholder="Repeat new password"
-                required
-            >
-
-            <div id="passwordError"></div>
 
             <button type="submit">
-                Reset Password
+                Verify Code
             </button>
 
         </form>
 
-        <div id="resetPasswordMessage"></div>
+        <div id="verifyCodeMessage"></div>
 
     </div>
 

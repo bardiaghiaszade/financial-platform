@@ -1,67 +1,58 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>Bank - Forgot Password</title> 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
-</head> 
-<body> 
-    <header class="site-header"> 
-        <a href="{{ url_for('login_page') }}" class="brand-link"> 
-            <div class="brand-logo">B</div> 
-            <span class="brand-name">Transaction Bank</span> 
-        </a> 
-        <button type="button" id="themeToggle" class="theme-toggle">
-            Light Mode
-        </button>
-    </header> 
- 
-    <main class="card"> 
-        <header> 
-            <h1>Recover Password</h1> 
-            <p class="subtitle">Enter your Email to recover your Password</p> 
-        </header> 
-         
-        <form id="forgotPassForm"> 
- 
-            <div class="form-group"> 
-                <label for="email">Email Address</label> 
-                <input  
-                    type="email"  
-                    id="email"  
-                    name="email"  
-                    placeholder="name@example.com"  
-                    required  
-                    autocomplete="email" 
-                > 
-            </div> 
- 
- 
-            <button type="submit" class="btn">Send</button>
-            <div id="forgotPassMessage" class="form-error"></div>
-        </form> 
- 
-        <p class="footer-text"> 
-            Back to  
-            <a href="{{ url_for('login_page') }}">Log in</a> 
-        </p> 
-    </main> 
- 
-    <!-- Footer side -->
-    <footer class="site-footer"> 
-        <p>&copy; 2026 Transaction Bank. All rights reserved.</p> 
-        <div class="footer-links"> 
-            <a href="#">Privacy Policy</a> 
-            <a href="#">Terms of Service</a> 
-            <a href="#">Support</a> 
-        </div> 
-    </footer> 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Forgot Password</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Forgot Password</h1>
+
+        <p>
+            Enter your email address and we will send you
+            a verification code.
+        </p>
+
+        <form id="forgotPassForm">
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+                required
+            >
+
+            <button type="submit">
+                Send Verification Code
+            </button>
+
+        </form>
+
+        <div id="forgotPassMessage"></div>
+
+        <a href="{{ url_for('login_page') }}">
+            Back to Login
+        </a>
+
+    </div>
 
     <script
-        type="module" 
-        src="{{ url_for('static', filename='js/script.js') }}">
-    </script>
+        type="module"
+        src="{{ url_for('static', filename='js/script.js') }}"
+    ></script>
 
-</body> 
+</body>
+
 </html>

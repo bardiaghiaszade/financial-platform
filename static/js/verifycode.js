@@ -1,41 +1,38 @@
-export function initForgotPass(){
+export function initVerifyCode(){
 
-    const forgotPassForm =
-        document.getElementById(
-            "forgotPassForm"
-        );
+    const verifyCodeForm =
+        document.getElementById("verifyCodeForm");
 
-    if(!forgotPassForm){
+    if(!verifyCodeForm){
         return;
     }
 
-    forgotPassForm.addEventListener(
+    verifyCodeForm.addEventListener(
         "submit",
         async function(event){
 
             event.preventDefault();
 
-            const email =
+            const code =
                 document.getElementById(
-                    "email"
+                    "verificationCode"
                 ).value;
 
-            const forgotPassMessage =
+            const verifyCodeMessage =
                 document.getElementById(
-                    "forgotPassMessage"
+                    "verifyCodeMessage"
                 );
 
-            forgotPassMessage.textContent = "";
-
-            forgotPassMessage.classList.remove(
-                "success",
-                "show"
+            verifyCodeMessage.textContent = "";
+            verifyCodeMessage.classList.remove(
+                "show",
+                "success"
             );
 
             try{
 
                 const response = await fetch(
-                    "/api/forgotPass",
+                    "/api/verify-code",
                     {
                         method: "POST",
 
@@ -45,7 +42,7 @@ export function initForgotPass(){
                         },
 
                         body: JSON.stringify({
-                            email: email
+                            code: code
                         })
                     }
                 );
@@ -55,37 +52,35 @@ export function initForgotPass(){
 
                 if(!response.ok){
 
-                    forgotPassMessage.textContent =
+                    verifyCodeMessage.textContent =
                         data.message;
 
-                    forgotPassMessage.classList.add(
+                    verifyCodeMessage.classList.add(
                         "show"
                     );
 
                     return;
                 }
 
-                forgotPassMessage.textContent =
+                verifyCodeMessage.textContent =
                     data.message;
 
-                forgotPassMessage.classList.add(
+                verifyCodeMessage.classList.add(
                     "show",
                     "success"
                 );
 
                 setTimeout(() => {
-
                     window.location.href =
-                        "/verify-code";
-
+                        "/recover-pass";
                 }, 1000);
 
             }catch(error){
 
-                forgotPassMessage.textContent =
+                verifyCodeMessage.textContent =
                     error.message;
 
-                forgotPassMessage.classList.add(
+                verifyCodeMessage.classList.add(
                     "show"
                 );
             }
